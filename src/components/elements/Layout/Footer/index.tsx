@@ -1,9 +1,9 @@
-const Footer: React.FC = () => {
+const FooterElement: React.FC = () => {
   return (
-    <footer>
+    <footer style={{ backgroundColor: 'whitesmoke' }}>
       <p>© 2023 clothing store. All rights reserved.</p>
     </footer>
   )
 }
 
-export default Footer
+export default FooterElement
