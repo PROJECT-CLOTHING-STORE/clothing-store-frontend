@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'ProductSans';
+  src: url('/assets/fonts/ProductSans-Regular.ttf');
+}
+@font-face {
+  font-family: 'ProductSansBold';
+  src: url('/assets/fonts/ProductSans-Bold.ttf');
+}
+@font-face {
+  font-family: 'ProductSansItalic';
+  src: url('/assets/fonts/ProductSans-Italic.ttf');
+}
+@font-face {
+  font-family: 'ProductSansBoldItalic';
+  src: url('/assets/fonts/ProductSans-BoldItalic.ttf');
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -14,6 +31,12 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+
+main {
+  min-height: 90vh;
+  background-color: whitesmoke;
+  color: black;
 }
 
 body {
