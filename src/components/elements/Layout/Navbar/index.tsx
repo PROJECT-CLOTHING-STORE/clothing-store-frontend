@@ -1,6 +1,17 @@
+import { signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 const NavbarElement: React.FC = () => {
+  const { data: session } = useSession()
+  const router = useRouter()
+  const authButton = () => {
+    if (session) {
+      signOut()
+    } else {
+      router.push('/login')
+    }
+  }
   return (
     <>
       <div className="navbar bg-base-100">
@@ -45,7 +56,9 @@ const NavbarElement: React.FC = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">Clothing Store</a>
+          <a className="btn btn-ghost normal-case text-xl" href="/">
+            Clothing Store
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -71,7 +84,10 @@ const NavbarElement: React.FC = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Sign Up</a>
+          {session ? <h1>Welcome, {session?.user.username}</h1> : ''}
+          <button className="btn" onClick={authButton}>
+            {session ? 'Sign Out' : 'Sign Up'}
+          </button>
         </div>
       </div>
     </>

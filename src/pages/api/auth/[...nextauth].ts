@@ -4,10 +4,14 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 export default NextAuth({
   session: {
     strategy: 'jwt',
+    maxAge: 60 * 60,
+  },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET,
   },
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      name: 'credentials',
       credentials: {
         username: { label: 'Username', type: 'text', placeholder: 'Agung123' },
         password: { label: 'Password', type: 'password' },
@@ -21,15 +25,24 @@ export default NextAuth({
             headers: { 'Content-Type': 'application/json' },
           }
         )
+        console.log(res)
+        const fetched = await res.json()
 
-        const user = await res.json()
-
-        if (res.ok && user.message === 'success') {
-          return user
+        if (res.ok && fetched.message === 'success') {
+          return fetched
         }
-
         return null
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user }
+    },
+    async session({ session, token, user }) {
+      session.user = token as any
+      return session
+    },
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 })

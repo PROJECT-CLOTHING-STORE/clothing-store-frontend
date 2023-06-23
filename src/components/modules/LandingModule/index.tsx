@@ -5,7 +5,6 @@ import Image from 'next/image'
 
 export const LandingModule: React.FC = () => {
   // TODO: Write module's logic
-
   return (
     <>
       <main>
