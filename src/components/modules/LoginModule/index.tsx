@@ -1,10 +1,13 @@
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import Swal from 'sweetalert2'
 // import {HeroSection, FAQSection} from './sections
 // import {} from './module-elements'
 
 export const LoginModule: React.FC = () => {
   // TODO: Write module's logic
+  const router = useRouter()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const handleSignIn = async () => {
@@ -13,11 +16,32 @@ export const LoginModule: React.FC = () => {
       username: username,
       password: password,
     })
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      },
+    })
     if (result!.error) {
-      // Handle sign-in error
+      Toast.fire({
+        icon: 'error',
+        title: 'Sign in unsuccessful!',
+      })
       console.error(result!.error)
     } else {
-      // Handle successful sign-in (e.g., redirect to a dashboard page)
+      Toast.fire({
+        icon: 'success',
+        title: 'Signed in successfully',
+        didClose: () => {
+          router.push('/')
+        },
+      })
+
       console.log('Sign-in successful!')
     }
   }
