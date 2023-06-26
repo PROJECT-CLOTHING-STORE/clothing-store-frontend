@@ -94,12 +94,14 @@ export const RegistrationModule: React.FC = () => {
             <div
               style={{
                 width: '100%',
-                color: 'black',
                 alignItems: 'flex-start',
                 textAlign: 'start',
               }}
             >
-              <label style={{ paddingLeft: 3 }} htmlFor="username_text_input">
+              <label
+                style={{ paddingLeft: 3, color: 'black' }}
+                htmlFor="username_text_input"
+              >
                 Username
               </label>
               <input
@@ -114,12 +116,14 @@ export const RegistrationModule: React.FC = () => {
             <div
               style={{
                 width: '100%',
-                color: 'black',
                 alignItems: 'flex-start',
                 textAlign: 'start',
               }}
             >
-              <label style={{ paddingLeft: 3 }} htmlFor="password_text_input">
+              <label
+                style={{ paddingLeft: 3, color: 'black' }}
+                htmlFor="password_text_input"
+              >
                 Password
               </label>
               <input
