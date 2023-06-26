@@ -59,6 +59,7 @@ export const LoginModule: React.FC = () => {
         <div
           style={{
             display: 'flex',
+            flexDirection: 'column',
             width: '100%',
             maxWidth: '500px',
             margin: 2,
@@ -68,7 +69,7 @@ export const LoginModule: React.FC = () => {
           }}
         >
           <div
-            className="flex flex-col py-2 gap-10 grow"
+            className="flex flex-col py-2 gap-7 grow"
             style={{
               justifyContent: 'center',
               alignItems: 'center',
@@ -78,22 +79,71 @@ export const LoginModule: React.FC = () => {
             <h1 style={{ color: 'black', fontSize: 48, fontWeight: 'bold' }}>
               Sign in
             </h1>
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="input input-bordered w-full max-w-md"
-              id="username_text_input"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input input-bordered w-full max-w-md"
-              id="password_text_input"
-            />
+            <div
+              style={{
+                width: '100%',
+                color: 'black',
+                alignItems: 'flex-start',
+                textAlign: 'start',
+              }}
+            >
+              <label style={{ paddingLeft: 3 }} htmlFor="username_text_input">
+                Username
+              </label>
+              <input
+                type="text"
+                placeholder="e.g. Bambang123"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="input input-bordered w-full max-w-md"
+                id="username_text_input"
+              />
+            </div>
+            <div
+              style={{
+                width: '100%',
+                color: 'black',
+                alignItems: 'flex-start',
+                textAlign: 'start',
+              }}
+            >
+              <label style={{ paddingLeft: 3 }} htmlFor="password_text_input">
+                Password
+              </label>
+              <input
+                type="password"
+                placeholder="e.g. Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input input-bordered w-full max-w-md"
+                id="password_text_input"
+              />
+            </div>
+
+            <div
+              style={{
+                width: '100%',
+                color: 'black',
+                alignItems: 'flex-start',
+                textAlign: 'start',
+              }}
+            >
+              <a
+                className="link"
+                style={{ paddingLeft: 10 }}
+                href="/registration"
+              >
+                Don&apos;t have an account?
+              </a>
+              <br />
+              <a
+                className="link"
+                style={{ paddingLeft: 10, fontSize: 14 }}
+                href="/forgot-password"
+              >
+                Forgot password?
+              </a>
+            </div>
             <button className="btn btn-primary" onClick={handleSignIn}>
               Submit
             </button>

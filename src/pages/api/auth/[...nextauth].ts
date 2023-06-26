@@ -25,7 +25,6 @@ export default NextAuth({
             headers: { 'Content-Type': 'application/json' },
           }
         )
-        console.log(res)
         const fetched = await res.json()
 
         if (res.ok && fetched.message === 'success') {
