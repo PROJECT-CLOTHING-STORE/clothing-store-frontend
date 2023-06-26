@@ -19,7 +19,7 @@
   src: url('/assets/fonts/ProductSans-BoldItalic.ttf');
 }
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -31,11 +31,15 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+} */
+.sticky {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: whitesmoke;
 }
 
 main {
   min-height: 90vh;
-  background-color: whitesmoke;
+  background-color: white;
   color: black;
 }
 
