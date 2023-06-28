@@ -140,13 +140,6 @@ export const LoginModule: React.FC = () => {
                 Don&apos;t have an account?
               </a>
               <br />
-              <a
-                className="link"
-                style={{ paddingLeft: 10, fontSize: 14 }}
-                href="/forgot-password"
-              >
-                Forgot password?
-              </a>
             </div>
             <button className="btn btn-primary" onClick={handleSignIn}>
               Submit
