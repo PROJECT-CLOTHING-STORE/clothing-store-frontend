@@ -63,7 +63,7 @@ const NavbarElement: React.FC = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Clothes</a>
+              <a href="/clothes">Clothes</a>
             </li>
             <li tabIndex={0}>
               <details>
