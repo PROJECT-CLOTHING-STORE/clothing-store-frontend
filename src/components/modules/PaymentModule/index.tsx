@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { ClothesPaymentInterface } from './interface'
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
+import Image from 'next/image'
 // import {HeroSection, FAQSection} from './sections
 // import {} from './module-elements'
 
@@ -97,12 +98,16 @@ export const PaymentModule: React.FC<{ id: any }> = ({ id }) => {
             <div className="container mx-auto max-w-screen-lg py-10">
               <div className="flex justify-center items-start">
                 <div className="w-2/5 text-center">
-                  <img
-                    src={cloth?.image}
-                    alt={cloth?.name}
+                  <Image
+                    src={cloth!.image}
+                    alt={cloth!.name}
+                    height={500}
+                    width={500}
+                    loading="lazy"
                     style={{ paddingLeft: 20 }}
                   />
                   <h1 style={{ fontSize: 25 }}>{cloth?.name}</h1>
+                  <h1 style={{ fontSize: 18 }}>Rp{cloth?.price},00</h1>
                 </div>
                 <div
                   className="w-3/5 text-start px-5"
@@ -305,9 +310,7 @@ export const PaymentModule: React.FC<{ id: any }> = ({ id }) => {
   }
   return (
     <>
-      <main>
-        <h1>404 Not Found</h1>
-      </main>
+      <main></main>
     </>
   )
 }

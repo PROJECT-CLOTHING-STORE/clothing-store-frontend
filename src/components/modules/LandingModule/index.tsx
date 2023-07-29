@@ -16,6 +16,7 @@ export const LandingModule: React.FC = () => {
               alt="clothing3d"
               width={500}
               height={700}
+              loading="lazy"
             />
             <div>
               <h1 className="text-5xl font-bold">Treat Yourself With Style!</h1>
