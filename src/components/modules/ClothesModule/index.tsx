@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { ClothesInterface } from './interface'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 // import {HeroSection, FAQSection} from './sections
 // import {} from './module-elements'
 
 export const ClothesModule: React.FC = () => {
   // TODO: Write module's logic
   const { data: session } = useSession()
+  const router = useRouter()
 
   const [pictures, setPictures] = useState<ClothesInterface[]>()
   useEffect(() => {
@@ -22,6 +24,11 @@ export const ClothesModule: React.FC = () => {
         console.log(err)
       })
   }, [])
+
+  const buttonFunct = (id: number) => {
+    router.push('/payment/' + id)
+  }
+
   return (
     <>
       <main>
@@ -38,6 +45,7 @@ export const ClothesModule: React.FC = () => {
               <div className="card-body">
                 <h2 className="card-title">
                   {val.name}
+                  &nbsp; Rp{val.price},00
                   <div className="badge badge-secondary">NEW</div>
                 </h2>
                 <p>{val.description}</p>
@@ -49,7 +57,14 @@ export const ClothesModule: React.FC = () => {
                       </div>
                     ))}
                   </div>
-                  {session && <button className="btn btn-outline">buy</button>}
+                  {session && (
+                    <button
+                      className="btn btn-outline"
+                      onClick={() => buttonFunct(val.id)}
+                    >
+                      buy
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-export interface ClothesInterface {
+export interface ClothesPaymentInterface {
   id: number
   createdAt: Date
   image: string
