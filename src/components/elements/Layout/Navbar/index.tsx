@@ -85,7 +85,7 @@ const NavbarElement: React.FC = () => {
         </div>
         <div className="navbar-end">
           {session ? <h1>Welcome, {session?.user.username}</h1> : ''}
-          <button className="btn" onClick={authButton}>
+          <button className="btn mx-5" onClick={authButton}>
             {session ? 'Sign Out' : 'Sign Up'}
           </button>
         </div>
