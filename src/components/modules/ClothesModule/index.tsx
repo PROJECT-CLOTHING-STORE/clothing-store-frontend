@@ -3,6 +3,7 @@ import axios from 'axios'
 import { ClothesInterface } from './interface'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 // import {HeroSection, FAQSection} from './sections
 // import {} from './module-elements'
 
@@ -40,7 +41,13 @@ export const ClothesModule: React.FC = () => {
               key={index}
             >
               <figure>
-                <img src={val.image} alt={val.name} />
+                <Image
+                  src={val.image}
+                  alt={val.name}
+                  loading="lazy"
+                  width={500}
+                  height={500}
+                />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">
