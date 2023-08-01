@@ -38,9 +38,12 @@ const NavbarElement: React.FC = () => {
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Home</a>
+                <a href="/clothes">Clothes</a>
               </li>
               <li>
+                <a href="/transactionList">Transactions</a>
+              </li>
+              {/* <li>
                 <a>Parent</a>
                 <ul className="p-2">
                   <li>
@@ -50,10 +53,7 @@ const NavbarElement: React.FC = () => {
                     <a>Submenu 2</a>
                   </li>
                 </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <a className="btn btn-ghost normal-case text-xl" href="/">
@@ -65,7 +65,10 @@ const NavbarElement: React.FC = () => {
             <li>
               <a href="/clothes">Clothes</a>
             </li>
-            <li tabIndex={0}>
+            <li>
+              <a href="/transactionList">Transactions</a>
+            </li>
+            {/* <li tabIndex={0}>
               <details>
                 <summary>Parent</summary>
                 <ul className="p-2">
@@ -77,10 +80,7 @@ const NavbarElement: React.FC = () => {
                   </li>
                 </ul>
               </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="navbar-end">
