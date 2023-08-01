@@ -1,9 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 // import {HeroSection, FAQSection} from './sections
 // import {} from './module-elements'
 
 export const LandingModule: React.FC = () => {
+  const router = useRouter()
   // TODO: Write module's logic
   return (
     <>
@@ -25,7 +27,14 @@ export const LandingModule: React.FC = () => {
                 clothing collection, designed to elevate your wardrobe and
                 express your unique personality.
               </p>
-              <button className="btn btn-primary">Get Started</button>
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  router.push('/login')
+                }}
+              >
+                Get Started
+              </button>
             </div>
           </div>
         </div>

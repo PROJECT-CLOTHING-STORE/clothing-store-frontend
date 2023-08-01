@@ -30,10 +30,9 @@ export const PaymentModule: React.FC<{ id: any }> = ({ id }) => {
       .then((value) => {
         setCloth(value.data)
       })
-  }, [])
+  }, [session])
 
   const submitButton = () => {
-    console.log(session?.user.accessToken)
     axios
       .post(
         `https://clothing-store-backend-production.up.railway.app/payment/create`,
