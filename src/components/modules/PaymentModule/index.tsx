@@ -32,7 +32,8 @@ export const PaymentModule: React.FC<{ id: any }> = ({ id }) => {
       })
   }, [session])
 
-  const submitButton = () => {
+  const submitButton = (event: any) => {
+    event.preventDefault()
     axios
       .post(
         `https://clothing-store-backend-production.up.railway.app/payment/create`,
@@ -112,191 +113,201 @@ export const PaymentModule: React.FC<{ id: any }> = ({ id }) => {
                   className="w-3/5 text-start px-5"
                   style={{ backgroundColor: 'whitesmoke' }}
                 >
-                  <h1
-                    style={{
-                      textAlign: 'center',
-                      fontSize: 30,
-                      paddingBlock: 25,
-                    }}
-                  >
-                    CHECKOUT
-                  </h1>
-                  <label
-                    style={{
-                      display: 'block',
-
-                      fontSize: 15,
-                    }}
-                  >
-                    Cloth Details
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
-                    <select
-                      className="select select-bordered max-w-xs"
-                      onChange={(event) => {
-                        setSize(event.target.value)
+                  <form onSubmit={submitButton}>
+                    <h1
+                      style={{
+                        textAlign: 'center',
+                        fontSize: 30,
+                        paddingBlock: 25,
                       }}
-                      id="clothSize"
-                      style={{ color: 'white', marginBlock: 15 }}
                     >
-                      <option disabled selected>
-                        Cloth Size
-                      </option>
-                      <option>XS</option>
-                      <option>S</option>
-                      <option>M</option>
-                      <option>L</option>
-                      <option>XL</option>
-                    </select>
-                    <select
-                      className="select select-bordered max-w-xs"
-                      onChange={(event) => {
-                        const data: number = Number(event.target.value)
-                        setQuantity(data)
-                      }}
-                      id="clothQuantity"
-                      style={{ color: 'white', marginBlock: 15 }}
-                    >
-                      <option disabled selected>
-                        Cloth Quantity
-                      </option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                  <label
-                    htmlFor="emailForm"
-                    style={{
-                      display: 'block',
+                      CHECKOUT
+                    </h1>
+                    <label
+                      style={{
+                        display: 'block',
 
-                      fontSize: 15,
-                    }}
-                  >
-                    Contact Information
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    className="input input-bordered w-full"
-                    value={email}
-                    onChange={(event) => {
-                      setEmail(event.target.value)
-                    }}
-                    id="emailForm"
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      marginBlock: 15,
-                    }}
-                  />
-                  <label
-                    style={{
-                      display: 'block',
-                      fontSize: 15,
-                    }}
-                  >
-                    Shipping Address (all shipments will through JNE)
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
+                        fontSize: 15,
+                      }}
+                    >
+                      Cloth Details
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <select
+                        className="select select-bordered max-w-xs"
+                        onChange={(event) => {
+                          setSize(event.target.value)
+                        }}
+                        id="clothSize"
+                        style={{ color: 'white', marginBlock: 15 }}
+                        required
+                      >
+                        <option disabled selected>
+                          Cloth Size
+                        </option>
+                        <option>XS</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                      </select>
+                      <select
+                        className="select select-bordered max-w-xs"
+                        onChange={(event) => {
+                          const data: number = Number(event.target.value)
+                          setQuantity(data)
+                        }}
+                        id="clothQuantity"
+                        style={{ color: 'white', marginBlock: 15 }}
+                        required
+                      >
+                        <option disabled selected>
+                          Cloth Quantity
+                        </option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                    <label
+                      htmlFor="emailForm"
+                      style={{
+                        display: 'block',
+
+                        fontSize: 15,
+                      }}
+                    >
+                      Contact Information
+                    </label>
                     <input
                       type="text"
-                      placeholder="First Name"
+                      placeholder="Email"
                       className="input input-bordered w-full"
-                      value={firstName}
+                      value={email}
                       onChange={(event) => {
-                        setFirstName(event.target.value)
+                        setEmail(event.target.value)
                       }}
-                      id="firstNameForm"
+                      id="emailForm"
                       style={{
                         display: 'block',
                         color: 'white',
                         marginBlock: 15,
                       }}
+                      required
                     />
-                    <input
-                      type="text"
-                      placeholder="Last Name"
-                      className="input input-bordered w-full"
-                      value={lastName}
-                      onChange={(event) => {
-                        setLastName(event.target.value)
-                      }}
-                      id="LastNameForm"
+                    <label
                       style={{
                         display: 'block',
-                        color: 'white',
-                        marginBlock: 15,
-                      }}
-                    />
-                  </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    <input
-                      type="text"
-                      placeholder="City"
-                      className="input input-bordered w-full"
-                      value={city}
-                      onChange={(event) => {
-                        setCity(event.target.value)
-                      }}
-                      id="cityForm"
-                      style={{
-                        display: 'block',
-                        color: 'white',
-                      }}
-                    />
-                    <input
-                      type="text"
-                      placeholder="Province"
-                      className="input input-bordered w-full"
-                      value={province}
-                      onChange={(event) => {
-                        setProvince(event.target.value)
-                      }}
-                      id="provinceForm"
-                      style={{
-                        display: 'block',
-                        color: 'white',
-                      }}
-                    />
-                    <input
-                      type="text"
-                      placeholder="Postal Code"
-                      className="input input-bordered w-full"
-                      onChange={(event) => {
-                        const data: number = Number(event.target.value)
-                        setPostalCode(data)
-                      }}
-                      id="postalCodeForm"
-                      style={{
-                        display: 'block',
-                        color: 'white',
-                      }}
-                    />
-                  </div>
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      marginBlock: 15,
-                      paddingTop: 20,
-                    }}
-                  >
-                    <button
-                      className="btn btn-secondary mx-2"
-                      onClick={() => {
-                        router.push('/clothes')
+                        fontSize: 15,
                       }}
                     >
-                      Cancel
-                    </button>
-                    <button className="btn btn-primary" onClick={submitButton}>
-                      Submit
-                    </button>
-                  </div>
+                      Shipping Address (all shipments will through JNE)
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <input
+                        type="text"
+                        placeholder="First Name"
+                        className="input input-bordered w-full"
+                        value={firstName}
+                        onChange={(event) => {
+                          setFirstName(event.target.value)
+                        }}
+                        id="firstNameForm"
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          marginBlock: 15,
+                        }}
+                        required
+                      />
+                      <input
+                        type="text"
+                        placeholder="Last Name"
+                        className="input input-bordered w-full"
+                        value={lastName}
+                        onChange={(event) => {
+                          setLastName(event.target.value)
+                        }}
+                        id="LastNameForm"
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          marginBlock: 15,
+                        }}
+                        required
+                      />
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      <input
+                        type="text"
+                        placeholder="City"
+                        className="input input-bordered w-full"
+                        value={city}
+                        onChange={(event) => {
+                          setCity(event.target.value)
+                        }}
+                        id="cityForm"
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                        }}
+                        required
+                      />
+                      <input
+                        type="text"
+                        placeholder="Province"
+                        className="input input-bordered w-full"
+                        value={province}
+                        onChange={(event) => {
+                          setProvince(event.target.value)
+                        }}
+                        id="provinceForm"
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                        }}
+                        required
+                      />
+                      <input
+                        type="text"
+                        placeholder="Postal Code"
+                        className="input input-bordered w-full"
+                        onChange={(event) => {
+                          const data: number = Number(event.target.value)
+                          setPostalCode(data)
+                        }}
+                        id="postalCodeForm"
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                        }}
+                        required
+                      />
+                    </div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginBlock: 15,
+                        paddingTop: 20,
+                      }}
+                    >
+                      <button
+                        className="btn btn-secondary mx-2"
+                        onClick={() => {
+                          router.push('/clothes')
+                        }}
+                      >
+                        Cancel
+                      </button>
+                      <button type="submit" className="btn btn-primary">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

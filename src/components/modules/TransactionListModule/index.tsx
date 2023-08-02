@@ -91,7 +91,7 @@ export const TransactionListModule: React.FC = () => {
                       />
                       <div className="flex flex-col gap-1">
                         <h1 style={{ fontWeight: 'bold' }}>
-                          {value.cloth.name} #{value.cloth.id}
+                          {value.cloth.name} #{value.cloth.id} {value.size}
                         </h1>
                         {value.quantity == 1 ? (
                           <h1>
