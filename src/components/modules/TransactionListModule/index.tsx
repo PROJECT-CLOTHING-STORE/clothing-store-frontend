@@ -30,6 +30,13 @@ export const TransactionListModule: React.FC = () => {
             const data: TransactionInterface = {
               paymentId: res.data[i].id,
               createdAt: new Date(res.data[i].createdAt),
+              firstName: res.data[i].firstName,
+              lastName: res.data[i].lastName,
+              email: res.data[i].email,
+              city: res.data[i].city,
+              province: res.data[i].province,
+              postalCode: res.data[i].postalCode,
+              addressDetail: res.data[i].addressDetail,
               quantity: res.data[i].quantity,
               size: res.data[i].size,
               isPaid: res.data[i].isPaid,
@@ -86,7 +93,7 @@ export const TransactionListModule: React.FC = () => {
                         src={value.cloth.image}
                         alt={value.cloth.name}
                         height={100}
-                        width={100}
+                        width={120}
                         loading="lazy"
                       />
                       <div className="flex flex-col gap-1">
@@ -106,9 +113,101 @@ export const TransactionListModule: React.FC = () => {
                     </div>
                     <div id="flex flex-col gap-1 items-start">
                       <h1>Transaction Total</h1>
-                      <h1 style={{ fontWeight: 'bold' }}>
+                      <h1 style={{ fontWeight: 'bold', marginBottom: 5 }}>
                         Rp{value.cloth.price * value.quantity},00
                       </h1>
+                      {/* The button to open modal */}
+                      <label
+                        htmlFor={'modal' + value.paymentId.toString()}
+                        className="btn"
+                        style={{ color: 'white' }}
+                      >
+                        Detail
+                      </label>
+                      {/* Put this part before </body> tag */}
+                      <input
+                        type="checkbox"
+                        id={'modal' + value.paymentId.toString()}
+                        className="modal-toggle"
+                      />
+                      <div className="modal" style={{ color: 'white' }}>
+                        <div className="modal-box">
+                          <h3 className="font-bold text-lg">
+                            Transaction {value.paymentId + 1937268054}
+                          </h3>
+                          <div className="py-5" id="modalBody">
+                            <div className="flex flex-row gap-2">
+                              <div>
+                                <Image
+                                  src={value.cloth.image}
+                                  alt={value.cloth.name}
+                                  height={100}
+                                  width={120}
+                                  loading="lazy"
+                                />
+                              </div>
+                              <div
+                                className="flex flex-col gap-2 px-2 py-2"
+                                style={{
+                                  backgroundColor: 'white',
+                                  borderWidth: 1,
+                                  borderRadius: 15,
+                                  color: 'black',
+                                  minWidth: '70%',
+                                }}
+                              >
+                                <label
+                                  style={{ fontWeight: 'bold' }}
+                                  htmlFor="productDetail"
+                                >
+                                  Product Detail
+                                </label>
+                                <div id="productDetail">
+                                  <h3>
+                                    {value.cloth.name} #{value.cloth.id}{' '}
+                                    {value.size}
+                                  </h3>
+                                  {value.quantity == 1 ? (
+                                    <h5 style={{ fontSize: 13 }}>
+                                      {value.quantity} item x Rp
+                                      {value.cloth.price},00
+                                    </h5>
+                                  ) : (
+                                    <h5>
+                                      {value.quantity} items x Rp
+                                      {value.cloth.price},00
+                                    </h5>
+                                  )}
+                                </div>
+                                <label style={{ fontWeight: 'bold' }}>
+                                  Delivery Information
+                                </label>
+                                <div id="deliveryInformation">
+                                  <h3>Courier: JNE</h3>
+                                  <h3>
+                                    Receiver Name:{' '}
+                                    {value.firstName + ' ' + value.lastName}
+                                  </h3>
+                                  <h3>Receiver Email: {value.email}</h3>
+                                  <h3>City: {value.city}</h3>
+                                  <h3>Province: {value.province}</h3>
+                                  <h3>Postal Code: {value.postalCode}</h3>
+                                  <h3>Address Detail: {value.addressDetail}</h3>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="modal-action">
+                            <label
+                              htmlFor={'modal' + value.paymentId.toString()}
+                              className="btn"
+                              style={{ color: 'white' }}
+                            >
+                              Close
+                            </label>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
