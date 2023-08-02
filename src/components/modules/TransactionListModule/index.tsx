@@ -83,7 +83,7 @@ export const TransactionListModule: React.FC = () => {
                     {value.isPaid ? (
                       <div className="badge badge-primary">paid</div>
                     ) : (
-                      <div className="badge badge-secondary">not paid</div>
+                      <div className="badge badge-secondary">unpaid</div>
                     )}
                     <h1>{value.paymentId + 1937268054}</h1>
                   </div>
@@ -93,7 +93,7 @@ export const TransactionListModule: React.FC = () => {
                         src={value.cloth.image}
                         alt={value.cloth.name}
                         height={100}
-                        width={120}
+                        width={100}
                         loading="lazy"
                       />
                       <div className="flex flex-col gap-1">

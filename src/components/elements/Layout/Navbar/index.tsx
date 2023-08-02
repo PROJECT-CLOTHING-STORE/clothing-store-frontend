@@ -1,10 +1,11 @@
 import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const NavbarElement: React.FC = () => {
   const { data: session } = useSession()
   const router = useRouter()
+  const [windowWidth, setWindowWidth] = useState(0)
   const authButton = () => {
     if (session) {
       signOut()
@@ -12,9 +13,27 @@ const NavbarElement: React.FC = () => {
       router.push('/login')
     }
   }
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth)
+  }
+  useEffect(() => {
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div
+        className="navbar bg-base-100"
+        style={{
+          top: 0,
+          left: 0,
+          width: '100%',
+          zIndex: 999,
+        }}
+      >
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -84,7 +103,11 @@ const NavbarElement: React.FC = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {session ? <h1>Welcome, {session?.user.username}</h1> : ''}
+          {session && windowWidth > 500 ? (
+            <h1>Welcome, {session?.user.username}</h1>
+          ) : (
+            ''
+          )}
           <button className="btn mx-5" onClick={authButton}>
             {session ? 'Sign Out' : 'Sign Up'}
           </button>
