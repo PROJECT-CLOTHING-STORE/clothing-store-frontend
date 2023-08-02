@@ -21,6 +21,7 @@ export const PaymentModule: React.FC<{ id: any }> = ({ id }) => {
   const [city, setCity] = useState('')
   const [province, setProvince] = useState('')
   const [postalCode, setPostalCode] = useState(0)
+  const [addressDetail, setAddressDetail] = useState('')
 
   useEffect(() => {
     axios
@@ -48,6 +49,7 @@ export const PaymentModule: React.FC<{ id: any }> = ({ id }) => {
           city: city,
           province: province,
           postalCode: postalCode,
+          addressDetail: addressDetail,
         },
         {
           headers: {
@@ -286,6 +288,22 @@ export const PaymentModule: React.FC<{ id: any }> = ({ id }) => {
                         required
                       />
                     </div>
+                    <input
+                      type="text"
+                      placeholder="Address Detail"
+                      className="input input-bordered w-full"
+                      value={addressDetail}
+                      onChange={(event) => {
+                        setAddressDetail(event.target.value)
+                      }}
+                      id="addressDetailForm"
+                      style={{
+                        display: 'block',
+                        color: 'white',
+                        marginBlock: 15,
+                      }}
+                      required
+                    />
                     <div
                       style={{
                         display: 'flex',
