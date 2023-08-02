@@ -33,6 +33,7 @@ export const ClothesModule: React.FC = () => {
   return (
     <>
       <main>
+        <br></br>
         <div className="flex flex-wrap gap-5 py-5 px-5 justify-center">
           {pictures?.map((val, index) => (
             <div
