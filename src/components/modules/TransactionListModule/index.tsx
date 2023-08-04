@@ -10,6 +10,33 @@ export const TransactionListModule: React.FC = () => {
   // TODO: Write module's logic
   const { data: session } = useSession()
   const [transaction, setTransaction] = useState<TransactionInterface[]>([])
+  const [transactionBuffer, setTransactionBuffer] = useState<
+    TransactionInterface[]
+  >([])
+  const [transactionFilter, setTransactionFilter] = useState('')
+
+  const setPaidFilter = () => {
+    const res: TransactionInterface[] = []
+    setTransactionFilter('paid')
+    transactionBuffer.map((value) => {
+      if (value.isPaid) res.push(value)
+    })
+    setTransaction(res)
+  }
+
+  const setUnpaidFilter = () => {
+    const res: TransactionInterface[] = []
+    setTransactionFilter('unpaid')
+    transactionBuffer.map((value) => {
+      if (!value.isPaid) res.push(value)
+    })
+    setTransaction(res)
+  }
+
+  const resetFilter = () => {
+    setTransactionFilter('')
+    setTransaction(transactionBuffer)
+  }
   useEffect(() => {
     if (session) {
       axios
@@ -50,6 +77,7 @@ export const TransactionListModule: React.FC = () => {
             finalData.push(data)
           }
           setTransaction(finalData)
+          setTransactionBuffer(finalData)
         })
     }
   }, [session])
@@ -58,6 +86,38 @@ export const TransactionListModule: React.FC = () => {
       {/* <HeroSection></HeroSection> */}
       <main>
         <br></br>
+        <div className="flex flex-row gap-2 px-5 items-center">
+          <h1 style={{ fontWeight: 'bold' }}>Status</h1>
+          <button
+            className="btn btn-primary"
+            onClick={setPaidFilter}
+            style={
+              transactionFilter === 'paid'
+                ? { borderWidth: 2, borderColor: 'black' }
+                : {}
+            }
+          >
+            paid
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={setUnpaidFilter}
+            style={
+              transactionFilter === 'unpaid'
+                ? { borderWidth: 2, borderColor: 'black' }
+                : {}
+            }
+          >
+            unpaid
+          </button>
+          <button
+            onClick={resetFilter}
+            style={{ color: '#641ae6', fontWeight: 'bold' }}
+          >
+            Reset Filter
+          </button>
+        </div>
+
         {transaction.length != 0 ? (
           transaction.map((value) => {
             return (
